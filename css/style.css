@@ -148,7 +148,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace,monospace;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
   font-size: 1em;
 }
 
@@ -5531,7 +5531,7 @@ pre,
   margin: 10px 0;
   padding: 15px 10px;
   overflow: auto;
-  font-size: 13px;
+  font-size: 14px;
   color: #4d4d4c;
   line-height: 1.5;
 }

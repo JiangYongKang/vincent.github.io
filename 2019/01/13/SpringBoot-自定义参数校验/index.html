@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>SpringBoot 自定义参数校验  | Hexo</title>
+  <meta name="description" content="简单校验在后端开发的过程中，验证前端参数的合法性是一个必不可少的步骤。但是参数验证会产生大量的样板代码，导致代码可读性差。使用 validator-api 可以简洁优雅的验证参数。我们来看一段代码：1234567@GetMappingpublic ResponseEntity index(@RequestParam(&quot;userOrderId&quot;) String userOrderId) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot 自定义参数校验 ">
+<meta property="og:url" content="http://blog.jiangyongkang.com/2019/01/13/SpringBoot-自定义参数校验/index.html">
+<meta property="og:site_name" content="vincent">
+<meta property="og:description" content="简单校验在后端开发的过程中，验证前端参数的合法性是一个必不可少的步骤。但是参数验证会产生大量的样板代码，导致代码可读性差。使用 validator-api 可以简洁优雅的验证参数。我们来看一段代码：1234567@GetMappingpublic ResponseEntity index(@RequestParam(&quot;userOrderId&quot;) String userOrderId) &amp;#123;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-27T07:51:04.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot 自定义参数校验 ">
+<meta name="twitter:description" content="简单校验在后端开发的过程中，验证前端参数的合法性是一个必不可少的步骤。但是参数验证会产生大量的样板代码，导致代码可读性差。使用 validator-api 可以简洁优雅的验证参数。我们来看一段代码：1234567@GetMappingpublic ResponseEntity index(@RequestParam(&quot;userOrderId&quot;) String userOrderId) &amp;#123;">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/01/13/SpringBoot-自定义参数校验/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/JiangYongKang" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpeg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">vincent</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">程序员一枚</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> ShangHai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/JiangYongKang" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/21/Let-s-Encrypt-证书续期/" class="title">Let&#39;s Encrypt 证书续期 </a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-21T15:49:33.000Z" itemprop="datePublished">2019-03-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/13/SpringBoot-自定义参数校验/" class="title">SpringBoot 自定义参数校验 </a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-13T15:49:19.000Z" itemprop="datePublished">2019-01-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/01/Let-s-Encrypt-申请免费的-Https-证书/" class="title">Let&#39;s Encrypt 申请免费的 Https 证书</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-01T15:49:07.000Z" itemprop="datePublished">2019-01-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/19/Spring-AOP-的简介与使用/" class="title">Spring AOP 的简介与使用</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-19T15:42:13.000Z" itemprop="datePublished">2018-11-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/18/Spring-Bean-装配和依赖注入/" class="title">Spring Bean 装配和依赖注入</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-18T14:41:05.000Z" itemprop="datePublished">2018-11-18</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-SpringBoot-自定义参数校验" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot 自定义参数校验 
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/01/13/SpringBoot-自定义参数校验/" class="article-date">
+	  <time datetime="2019-01-13T15:49:19.000Z" itemprop="datePublished">2019-01-13</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/01/13/SpringBoot-自定义参数校验/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="简单校验"><a href="#简单校验" class="headerlink" title="简单校验"></a>简单校验</h3><p>在后端开发的过程中，验证前端参数的合法性是一个必不可少的步骤。但是参数验证会产生大量的样板代码，导致代码可读性差。使用 <code>validator-api</code> 可以简洁优雅的验证参数。我们来看一段代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">index</span><span class="params">(@RequestParam(<span class="string">"userOrderId"</span>)</span> String userOrderId) </span>&#123;</span><br><span class="line">    <span class="comment">// 对订单ID做非空校验</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == userOrderId || <span class="string">""</span>.equals(userOrderId))</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.badRequest().build();</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.ok().build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然这样做也能起到校验的作用，但是当参数比较多，参数比较复杂的时候会写大量的校验代码，既麻烦又影响可读性。SpringBoot 可以帮我们简化校验，<code>spring-boot-starter-web</code> 中默认集成了 <code>hibernate-validator</code> 包，它提供了一系列验证各种参数的方法，所以说 SpringBoot 已经帮我们想好要怎么解决这个问题了。上面的例子，可以简化成如下代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">index</span><span class="params">(@RequestParam(<span class="string">"userOrderId"</span>)</span> @NotBlank String userOrderId) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.ok().build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>@NotBlank</code> 注解用来做非空判断，这样一来，代码量少了一大截，可读性也提高了。<br>不仅仅可以对包装类型做校验，如果接收参数是自定义对象，我们也是可以做校验的，例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Email</span>(message = <span class="string">"错误的邮箱格式"</span>)</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Size</span>(min = <span class="number">6</span>, max = <span class="number">30</span>, message = <span class="string">"密码长度应当在 6 ~ 30 个字符之间"</span>)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">index</span><span class="params">(@Validated @RequestBody User user)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.ok().build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>@Validated</code> 注解开启对对象的校验。还有一些其他的注解，像 <strong>@Min @Max @Length(min = 1, max = 2)</strong> 等等，更多的注解可以去 <strong><a href="http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/" target="_blank" rel="noopener">官方文档</a></strong> 查看。</p>
+<h3 id="自定义校验"><a href="#自定义校验" class="headerlink" title="自定义校验"></a>自定义校验</h3><p>但是在真实的业务逻辑中，这些基本的校验是不够的。更多的参数需要在数据库中进行对比，才能确定参数的合法性。比如在用户查看订单的时候，客户端传递过来一个订单的ID，这时候我们不仅要做非空验证，还要从数据库去判断 <strong>订单ID是否存在</strong>，这时候现有的验证注解就无法满足我们的需求了。我们需要实现一个 <strong>自定义的注解</strong>，用于验证订单ID是否存在，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Author: vincent</span></span><br><span class="line"><span class="comment"> * Date: 2019-01-12 12:35:00</span></span><br><span class="line"><span class="comment"> * Comment: 自定义验证注解，用于验证订单ID的合法性</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Constraint</span>(validatedBy = UserOrderConstraintValidator.class)</span><br><span class="line"><span class="meta">@Target</span>(value = &#123; ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER &#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> UserOrderValidation &#123;</span><br><span class="line">    <span class="function">String <span class="title">message</span><span class="params">()</span></span>;</span><br><span class="line">    Class&lt;?&gt;[] groups() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">    Class&lt;? extends Payload&gt;[] payload() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>想让自定义验证注解生效，需要实现 <code>ConstraintValidator</code> 接口。接口的第一个参数是 * 自定义注解类型<strong>，第二个参数是 </strong>被注解字段的类型**。这里因为订单ID 是 String 类型，我们第二个参数定义为 String 就可以了，需要提到的一点是 <code>ConstraintValidator</code> 接口的实现类无需添加 <code>@Component</code> 它在启动的时候就已经被加载到容器中了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserOrderConstraintValidator</span> </span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">ConstraintValidator</span>&lt;<span class="title">UserOrderValidation</span>, <span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> UserOrderService userOrderService;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化方法，我们可以做一些初始化的工作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> constraintAnnotation</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(UserOrderValidation constraintAnnotation)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"initialize constraint"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断 value 是否为空，不为空的情况下去数据库查询订单ID是否邮箱</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 被注解的字段的值，也就是 userOrderId</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String value, ConstraintValidatorContext context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> StringUtils.isNotEmpty(userOrderId) &amp;&amp; userOrderService.exists(userOrderId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>自定义校验注解和默认实现的注解的使用方法是一致的，例如我们在控制层去校验请求的订单ID是否在数据库中存在。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/orders"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserOrderController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;?&gt; show(<span class="meta">@PathVariable</span>(<span class="string">"id"</span>) </span><br><span class="line">                                  <span class="meta">@UserOrderValidation</span> String userOrderId) &#123;</span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.ok().build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://blog.jiangyongkang.com/2019/01/13/SpringBoot-自定义参数校验/" title="SpringBoot 自定义参数校验 " target="_blank" rel="external">http://blog.jiangyongkang.com/2019/01/13/SpringBoot-自定义参数校验/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/JiangYongKang" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpeg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/JiangYongKang" target="_blank"><span class="text-dark">vincent</span><small class="ml-1x">程序员一枚</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/03/21/Let-s-Encrypt-证书续期/" title="Let&#39;s Encrypt 证书续期 "><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/01/01/Let-s-Encrypt-申请免费的-Https-证书/" title="Let&#39;s Encrypt 申请免费的 Https 证书"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/JiangYongKang" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
