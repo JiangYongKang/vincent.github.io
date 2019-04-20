@@ -17,17 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>tags | JiangYongKang</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://blog.jiangyongkang.com/tags/index.html">
+  <title>SpringCloud 服务发现 | JiangYongKang</title>
+  <meta name="description" content="添加依赖1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt; 添加 @EnableE">
+<meta name="keywords" content="SpringCloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud 服务发现">
+<meta property="og:url" content="http://blog.jiangyongkang.com/2019/04/21/SpringCloud-服务发现/index.html">
 <meta property="og:site_name" content="vincent">
+<meta property="og:description" content="添加依赖1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt; 添加 @EnableE">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-12T13:05:23.133Z">
+<meta property="og:updated_time" content="2019-04-20T09:01:22.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="SpringCloud 服务发现">
+<meta name="twitter:description" content="添加依赖1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt; 添加 @EnableE">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://blog.jiangyongkang.com/tags/index.html">
+  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/04/21/SpringCloud-服务发现/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
   
@@ -179,14 +183,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-SpringCloud-服务发现" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      SpringCloud 服务发现
     </h1>
   
 
@@ -194,22 +198,39 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/tags/index.html" class="article-date">
-	  <time datetime="2019-04-12T21:05:23.000Z" itemprop="datePublished">2019-04-12</time>
+	<a href="/2019/04/21/SpringCloud-服务发现/" class="article-date">
+	  <time datetime="2019-04-20T16:49:10.000Z" itemprop="datePublished">2019-04-20</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/SpringCloud系列/">SpringCloud系列</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/SpringCloud/">SpringCloud</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/tags/index.html#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/21/SpringCloud-服务发现/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <p>添加依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>添加 <code>@EnableEurekaClient</code> 注解，开启服务发现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudServiceOneApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudServiceOneApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>开启服务注册配置，并设置注册中心的地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server.port=10001</span><br><span class="line">spring.application.name=spring-cloud-service-one-example</span><br><span class="line"></span><br><span class="line">eureka.client.fetch-registry=true</span><br><span class="line">eureka.client.register-with-eureka=true</span><br><span class="line">eureka.client.service-url.defaultZone=http://localhost:8080/eureka</span><br></pre></td></tr></table></figure></p>
+<p>依次打包并启动 <code>spring-cloud-eureka-example</code> <code>spring-cloud-service-one-example</code> 项目，查看输出的日志:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2019-04-20 16:58:46.270  INFO 55738 --- [nio-8080-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance SPRING-CLOUD-SERVICE-ONE-EXAMPLE/localhost:spring-cloud-service-one-example:10001 with status UP (replication=false)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2019-04-20 16:58:46.272  INFO 55809 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SPRING-CLOUD-SERVICE-ONE-EXAMPLE/localhost:spring-cloud-service-one-example:10001 - registration status: 204</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server</span><br><span class="line">2019-04-20 16:59:16.161  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200</span><br></pre></td></tr></table></figure>
+<p>通过以上日志能够查看出服务注册发现是正常运行的，访问 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 查看注册服务的状态。</p>
+<p>代码案例：<a href="https://github.com/JiangYongKang/spring-cloud-examples" target="_blank" rel="noopener">https://github.com/JiangYongKang/spring-cloud-examples</a></p>
+
       
     </div>
     <div class="article-footer">
@@ -231,6 +252,16 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/04/20/SpringCloud-服务注册/" title="SpringCloud 服务注册"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -339,6 +370,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
 
 
+
+
+
+   
 
 
 

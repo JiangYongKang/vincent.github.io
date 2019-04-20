@@ -17,21 +17,16 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>MySQL 分组查询取前N条 | JiangYongKang</title>
-  <meta name="description" content="一些说明在 MySQL 中通过 GROUP BY 进行分组查询，只会在每个组中出现一条数据。这一条数据并不是从改组中随机抽取的，而是该组结果的第一条数据。 表结构123456789101112mysql&amp;gt; DESC PRODUCT_ORDER;+---------------+---------------+------+-----+---------+-------+| Field">
-<meta name="keywords" content="MySQL">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 分组查询取前N条">
-<meta property="og:url" content="http://blog.jiangyongkang.com/2017/07/10/MySQL-分组查询取前N条/index.html">
+  <title>JiangYongKang</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="vincent">
+<meta property="og:url" content="http://blog.jiangyongkang.com/page/2/index.html">
 <meta property="og:site_name" content="vincent">
-<meta property="og:description" content="一些说明在 MySQL 中通过 GROUP BY 进行分组查询，只会在每个组中出现一条数据。这一条数据并不是从改组中随机抽取的，而是该组结果的第一条数据。 表结构123456789101112mysql&amp;gt; DESC PRODUCT_ORDER;+---------------+---------------+------+-----+---------+-------+| Field">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-14T02:50:09.712Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL 分组查询取前N条">
-<meta name="twitter:description" content="一些说明在 MySQL 中通过 GROUP BY 进行分组查询，只会在每个组中出现一条数据。这一条数据并不是从改组中随机抽取的，而是该组结果的第一条数据。 表结构123456789101112mysql&amp;gt; DESC PRODUCT_ORDER;+---------------+---------------+------+-----+---------+-------+| Field">
+<meta name="twitter:title" content="vincent">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://blog.jiangyongkang.com/2017/07/10/MySQL-分组查询取前N条/index.html">
+  <link rel="canonical" href="http://blog.jiangyongkang.com/page/2/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
   
@@ -180,17 +175,18 @@
 </aside>
 
   
+  <main class="main" role="main">
   
-<main class="main" role="main">
-  <div class="content">
+  
+    <div class="content">
   <article id="post-MySQL-分组查询取前N条" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
-    <h1 class="article-title" itemprop="name">
-      MySQL 分组查询取前N条
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/10/MySQL-分组查询取前N条/">MySQL 分组查询取前N条</a>
     </h1>
   
 
@@ -237,91 +233,38 @@
     </div>
   </article>
   
-    
-  <section id="comments">
-  	
-           
-    
-  </section>
-
-
-  
 </div>
 
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
+
   
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2017/12/05/MySQL-UNION-合并结果集/" title="MySQL UNION 合并结果集"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
-    
-    
-  </ul>
+
   
-  
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
-  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
-    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
-  </div> -->
-  
-  
-  <div class="bar-right">
     
-    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
-    
-  </div>
-  </div>
-</nav>
-  
-<!-- Modal -->
-<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content donate">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <div class="modal-body">
-        <div class="donate-box">
-          <div class="donate-head">
-            <p>感谢您的支持，我会继续努力的!</p>
-          </div>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
-              <div class="donate-payimg">
-                <img src="/images/donate/alipayimg.jpeg" alt="扫码支持" title="扫一扫">
-              </div>
-              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
-              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
-              <div class="donate-payimg">
-                <img src="/images/donate/wechatpayimg.jpeg" alt="扫码支持" title="扫一扫">
-              </div>
-              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
-              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
-            </div>
-          </div>
-          <div class="donate-footer">
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li role="presentation" class="active">
-                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
-              </li>
-              <li role="presentation" class>
-                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
-              </li>
-            </ul>
-          </div>
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev">
+                <a href="/">
+                    <i class="icon icon-angle-left"></i>
+                    上一页
+                </a>
+            </li>
+            
+            
+            <li class="next disabled">
+                <a href="javascript:;">
+                    下一页
+                    <i class="icon icon-angle-right"></i>                    
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 2 of 2</div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
+    </nav>
+    
+ 
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -374,27 +317,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
    
 
 
-
-
-   
-    
-  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-  <script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: 'd0a9bc6b3c1b096bf5ef',
-    clientSecret: '3c3e81ba47906ad48634a6af4a19a591ac5e5740',
-    repo: 'JiangYongKang.github.io',
-    owner: 'JiangYongKang',
-    admin: ['JiangYongKang'],
-    id: md5(location.pathname),
-    distractionFreeMode: true
-  })
-  gitalk.render('comments')
-  </script>
-
-      
 
 
 

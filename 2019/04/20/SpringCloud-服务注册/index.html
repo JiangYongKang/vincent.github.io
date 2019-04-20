@@ -17,17 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>tags | JiangYongKang</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://blog.jiangyongkang.com/tags/index.html">
+  <title>SpringCloud 服务注册 | JiangYongKang</title>
+  <meta name="description" content="添加依赖1234567&amp;lt;dependencies&amp;gt;    &amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/artifactId">
+<meta name="keywords" content="SpringCloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud 服务注册">
+<meta property="og:url" content="http://blog.jiangyongkang.com/2019/04/20/SpringCloud-服务注册/index.html">
 <meta property="og:site_name" content="vincent">
+<meta property="og:description" content="添加依赖1234567&amp;lt;dependencies&amp;gt;    &amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/artifactId">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-12T13:05:23.133Z">
+<meta property="og:updated_time" content="2019-04-20T09:01:24.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="SpringCloud 服务注册">
+<meta name="twitter:description" content="添加依赖1234567&amp;lt;dependencies&amp;gt;    &amp;lt;dependency&amp;gt;        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-server&amp;lt;/artifactId">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://blog.jiangyongkang.com/tags/index.html">
+  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/04/20/SpringCloud-服务注册/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
   
@@ -179,14 +183,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-SpringCloud-服务注册" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      SpringCloud 服务注册
     </h1>
   
 
@@ -194,22 +198,37 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/tags/index.html" class="article-date">
-	  <time datetime="2019-04-12T21:05:23.000Z" itemprop="datePublished">2019-04-12</time>
+	<a href="/2019/04/20/SpringCloud-服务注册/" class="article-date">
+	  <time datetime="2019-04-20T12:50:30.000Z" itemprop="datePublished">2019-04-20</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/SpringCloud系列/">SpringCloud系列</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/SpringCloud/">SpringCloud</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/tags/index.html#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/20/SpringCloud-服务注册/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <p>添加依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>启动类上添加 <code>@EnableEurekaServer</code> 注解开启服务发现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudEurekaApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudEurekaApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>添加下面的依赖并禁止注册中心的自我注册<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server.port=8080</span><br><span class="line">spring.application.name=spring-cloud-eureka-example</span><br><span class="line"></span><br><span class="line">eureka.client.fetch-registry=false</span><br><span class="line">eureka.client.register-with-eureka=false</span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka</span><br></pre></td></tr></table></figure></p>
+<p>这里会有两个地址。第一个 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 是注册中心默认的管理页面，上面可以便捷的查看服务的注册情况。第二个 <a href="http://localhost:8080/eureka" target="_blank" rel="noopener">http://localhost:8080/eureka</a> 是注册中心的注册地址，其他服务需要在注册中心注册需要配置这个地址。</p>
+<p>代码案例：<a href="https://github.com/JiangYongKang/spring-cloud-examples" target="_blank" rel="noopener">https://github.com/JiangYongKang/spring-cloud-examples</a></p>
+
       
     </div>
     <div class="article-footer">
@@ -231,6 +250,20 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/04/21/SpringCloud-服务发现/" title="SpringCloud 服务发现"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/03/21/Let-s-Encrypt-证书续期/" title="Let&#39;s Encrypt 证书续期 "><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -339,6 +372,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
 
 
+
+
+
+   
 
 
 
