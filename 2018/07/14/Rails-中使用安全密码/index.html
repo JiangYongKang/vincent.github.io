@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Let&#39;s Encrypt 证书续期  | JiangYongKang</title>
-  <meta name="description" content="查看证书有效期Let’s Encrypt 默认情况下只提供三个月的有效期，在有效期剩余半个月的时候，Let’s Encrypt 会发送邮件给你，提醒你需要做证书的续期操作。或者我们也可以通过以下命令查看证书的剩余有效期限：1234567891011$ ./certbot-auto certificatesSaving debug log to /var/log/letsencrypt/letsen">
-<meta name="keywords" content="Https,域名">
+  <title>Rails 中使用安全密码 | JiangYongKang</title>
+  <meta name="description" content="但愿你没有在数据库里直接存储明文密码！为了防治密码被窃取，数据库中存储的始终应该是某种形式的哈希值，而非明文密码。但是，Rails 3.1 之后可以利用 has_secure_password 来实现。这个 Rails 内部的机制充分考虑了密码验证和加密。它需要 model 中有一个 password_digest 字段，用来存储加密后的密码。 1234$ rails g model user e">
+<meta name="keywords" content="Rails">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Let&#39;s Encrypt 证书续期 ">
-<meta property="og:url" content="http://blog.jiangyongkang.com/2019/03/21/Let-s-Encrypt-证书续期/index.html">
+<meta property="og:title" content="Rails 中使用安全密码">
+<meta property="og:url" content="http://blog.jiangyongkang.com/2018/07/14/Rails-中使用安全密码/index.html">
 <meta property="og:site_name" content="vincent">
-<meta property="og:description" content="查看证书有效期Let’s Encrypt 默认情况下只提供三个月的有效期，在有效期剩余半个月的时候，Let’s Encrypt 会发送邮件给你，提醒你需要做证书的续期操作。或者我们也可以通过以下命令查看证书的剩余有效期限：1234567891011$ ./certbot-auto certificatesSaving debug log to /var/log/letsencrypt/letsen">
+<meta property="og:description" content="但愿你没有在数据库里直接存储明文密码！为了防治密码被窃取，数据库中存储的始终应该是某种形式的哈希值，而非明文密码。但是，Rails 3.1 之后可以利用 has_secure_password 来实现。这个 Rails 内部的机制充分考虑了密码验证和加密。它需要 model 中有一个 password_digest 字段，用来存储加密后的密码。 1234$ rails g model user e">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-13T07:55:35.398Z">
+<meta property="og:updated_time" content="2019-06-17T02:33:52.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Let&#39;s Encrypt 证书续期 ">
-<meta name="twitter:description" content="查看证书有效期Let’s Encrypt 默认情况下只提供三个月的有效期，在有效期剩余半个月的时候，Let’s Encrypt 会发送邮件给你，提醒你需要做证书的续期操作。或者我们也可以通过以下命令查看证书的剩余有效期限：1234567891011$ ./certbot-auto certificatesSaving debug log to /var/log/letsencrypt/letsen">
+<meta name="twitter:title" content="Rails 中使用安全密码">
+<meta name="twitter:description" content="但愿你没有在数据库里直接存储明文密码！为了防治密码被窃取，数据库中存储的始终应该是某种形式的哈希值，而非明文密码。但是，Rails 3.1 之后可以利用 has_secure_password 来实现。这个 Rails 内部的机制充分考虑了密码验证和加密。它需要 model 中有一个 password_digest 字段，用来存储加密后的密码。 1234$ rails g model user e">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/03/21/Let-s-Encrypt-证书续期/index.html">
+  <link rel="canonical" href="http://blog.jiangyongkang.com/2018/07/14/Rails-中使用安全密码/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
   
@@ -183,14 +183,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Let-s-Encrypt-证书续期" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Rails-中使用安全密码" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Let&#39;s Encrypt 证书续期 
+      Rails 中使用安全密码
     </h1>
   
 
@@ -198,35 +198,60 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/03/21/Let-s-Encrypt-证书续期/" class="article-date">
-	  <time datetime="2019-03-21T15:49:33.000Z" itemprop="datePublished">2019-03-21</time>
+	<a href="/2018/07/14/Rails-中使用安全密码/" class="article-date">
+	  <time datetime="2018-07-14T10:28:56.000Z" itemprop="datePublished">2018-07-14</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/服务端运维/">服务端运维</a>
+    <a class="article-category-link" href="/categories/Ruby/">Ruby</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Https/">Https</a>, <a class="article-tag-link" href="/tags/域名/">域名</a>
+	<a class="article-tag-link" href="/tags/Rails/">Rails</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/03/21/Let-s-Encrypt-证书续期/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/07/14/Rails-中使用安全密码/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="查看证书有效期"><a href="#查看证书有效期" class="headerlink" title="查看证书有效期"></a>查看证书有效期</h3><p>Let’s Encrypt 默认情况下只提供三个月的有效期，在有效期剩余半个月的时候，Let’s Encrypt 会发送邮件给你，提醒你需要做证书的续期操作。或者我们也可以通过以下命令查看证书的剩余有效期限：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ./certbot-auto certificates</span><br><span class="line">Saving debug log to /var/log/letsencrypt/letsencrypt.log</span><br><span class="line"></span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </span><br><span class="line">Found the following certs:</span><br><span class="line">  Certificate Name: example.com</span><br><span class="line">    Domains: *.example.com example.com</span><br><span class="line">    Expiry Date: 2019-06-19 09:37:01+00:00 (VALID: 89 days)</span><br><span class="line">    Certificate Path: /etc/letsencrypt/live/example.com/fullchain.pem</span><br><span class="line">    Private Key Path: /etc/letsencrypt/live/example.com/privkey.pem</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br></pre></td></tr></table></figure></p>
-<h3 id="手动续期"><a href="#手动续期" class="headerlink" title="手动续期"></a>手动续期</h3><p>如果你使用的是通配符域名，那么很不幸，你讲无法使用 <code>certbot-auto renew</code> 方法进行续期。我们可以尝试手动去续期，命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory \</span><br><span class="line">-d "*.example.com" -d "example.com" \</span><br><span class="line">--manual --preferred-challenges dns-01 certonly</span><br></pre></td></tr></table></figure></p>
-<p>已下部分是执行的日志<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Saving debug log to /var/log/letsencrypt/letsencrypt.log</span><br><span class="line">Plugins selected: Authenticator manual, Installer None</span><br><span class="line">Cert is due for renewal, auto-renewing...</span><br><span class="line">Renewing an existing certificate</span><br><span class="line">Performing the following challenges:</span><br><span class="line">dns-01 challenge for example.com</span><br><span class="line"></span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">NOTE: The IP of this machine will be publicly logged as having requested this</span><br><span class="line">certificate. If you're running certbot in manual mode on a machine that is not</span><br><span class="line">your server, please ensure you're okay with that.</span><br><span class="line"></span><br><span class="line">Are you OK with your IP being logged?</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">(Y)es/(N)o: Y</span><br><span class="line"></span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">Please deploy a DNS TXT record under the name</span><br><span class="line">_acme-challenge.example.com with the following value:</span><br><span class="line"></span><br><span class="line">mnDglnRF3P0VCEW6xoIDYblcswOJySkc3CPAQIwFm-c</span><br><span class="line"></span><br><span class="line">Before continuing, verify the record is deployed.</span><br><span class="line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span><br><span class="line">Press Enter to Continue</span><br></pre></td></tr></table></figure></p>
-<p>执行到这里时，我们就要开始添加记录了。打开你的域名提供商，添加一条TXT类型的记录。主机记录是上面打印出来的 <code>_acme-challenge.example.com</code> 记录值为 <code>mnDglnRF3P0VCEW6xoIDYblcswOJySkc3CPAQIwFm-c</code>。填写完毕之后，稍等一分钟，回车继续，不出意外的话，续期成功了。当然，你仍然需要重启 <code>nginx</code>。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Waiting for verification...</span><br><span class="line">Cleaning up challenges</span><br><span class="line"></span><br><span class="line">IMPORTANT NOTES:</span><br><span class="line"> - Congratulations! Your certificate and chain have been saved at:</span><br><span class="line">   /etc/letsencrypt/live/example.com/fullchain.pem</span><br><span class="line">   Your key file has been saved at:</span><br><span class="line">   /etc/letsencrypt/live/example.com/privkey.pem</span><br><span class="line">   Your cert will expire on 2019-06-19. To obtain a new or tweaked</span><br><span class="line">   version of this certificate in the future, simply run certbot-auto</span><br><span class="line">   again. To non-interactively renew *all* of your certificates, run</span><br><span class="line">   "certbot-auto renew"</span><br><span class="line"> - If you like Certbot, please consider supporting our work by:</span><br><span class="line"></span><br><span class="line">   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate</span><br><span class="line">   Donating to EFF:                    https://eff.org/donate-le</span><br></pre></td></tr></table></figure></p>
+        <p>但愿你没有在数据库里直接存储明文密码！为了防治密码被窃取，数据库中存储的始终应该是某种形式的哈希值，而非明文密码。但是，<code>Rails 3.1</code> 之后可以利用 <code>has_secure_password</code> 来实现。这个 <code>Rails</code> 内部的机制充分考虑了密码验证和加密。它需要 <code>model</code> 中有一个 <code>password_digest</code> 字段，用来存储加密后的密码。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ rails g model user <span class="symbol">email:</span>string <span class="symbol">password_digest:</span>string</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ApplicationRecord</span></span><br><span class="line">  has_secure_password</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>has_secure_password</code> 这会为 <code>model</code> 加上 <code>password</code> 和 <code>password_confirmation</code> 两个属性。这两个属性是 <code>model</code> 的一部分，但是并不存在于数据库中，因为我们并不需要存储明文密码。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">test <span class="string">'fails because no password'</span> <span class="keyword">do</span></span><br><span class="line">  user = User.new(<span class="symbol">email:</span> <span class="string">'vincent@email.com'</span>)</span><br><span class="line">  assert_not user.save</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test <span class="string">'fails because passwrod to short'</span> <span class="keyword">do</span></span><br><span class="line">  user = User.new(<span class="symbol">email:</span> <span class="string">'vincent@email.com'</span>, <span class="symbol">password:</span> <span class="string">'123'</span>)</span><br><span class="line">  assert_not user.save</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test <span class="string">'succeeds because password is long enough'</span> <span class="keyword">do</span></span><br><span class="line">  user = User.new(<span class="symbol">email:</span> <span class="string">'vincent@email.com'</span>, <span class="symbol">password:</span> <span class="string">'123456'</span>)</span><br><span class="line">  assert user.save</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不提供密码，用户创建失败</li>
+<li>密码过短，用户创建失败</li>
+<li>密码合法，用户创建成功</li>
+</ul>
+<p>用 <code>rails test</code> 跑这些用例时，第二个用例会失败。因为默认 <code>Rails</code> 不会加入密码长度的验证。现在我们在 <code>model</code> 中自己加上。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ApplicationRecord</span></span><br><span class="line">  has_secure_password</span><br><span class="line">  validates <span class="symbol">:password</span>, <span class="symbol">length:</span> &#123; <span class="symbol">minimum:</span> <span class="number">6</span> &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>再跑一次测试，这次用例都通过了。检查一下数据库会发现 <code>users</code> 表的 <code>password_digest</code> 列存储着经过加密的数值，这正是我们想要的！现在来做验证的部分。假设一个新的注册用户现在想要登录。你可以这样进行验证：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.find_by(<span class="symbol">email:</span> <span class="string">"EMAIL"</span>).authenticate(<span class="string">"CLEAR_TEXT_PASSWORD"</span>)</span><br></pre></td></tr></table></figure>
+<p>如果从 <code>HTTP</code> 请求中传来的用户名和明文密码都正确，将从数据库中返回一个有效用户。否则返回 <code>nil</code> <code>has_secure_password</code> 只在对象创建时对密码进行验证。之后的操作便不再验证（例如 <code>update</code> ）。这个可以接受，因为这意味着你可以从数据库加载用户，在不知道密码的情况下修改和保存用户。<code>has_secure_password</code> 还为 <code>model</code> 提供了 <code>password_confirmation</code> 属性。只有当该属性为非 <code>nil</code> 值时才触发验证。如果该属性非 <code>nil</code>，则其值必须与 <code>password</code> 属性相等。让我们针对该属性再加两个测试用例。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">test <span class="string">"fails because password confirmation doesnt match"</span> <span class="keyword">do</span></span><br><span class="line">  user = User.new(<span class="symbol">email:</span> <span class="string">'vincent@email.com'</span>, <span class="symbol">password:</span> <span class="string">'123456'</span>, <span class="symbol">password_confirmation:</span> <span class="string">'654321'</span>)</span><br><span class="line">  assert_not user.save</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test <span class="string">"succeeds because password &amp; confirmation match"</span> <span class="keyword">do</span></span><br><span class="line">  user = User.new(<span class="symbol">email:</span> <span class="string">'vincent@email.com'</span>, <span class="symbol">password:</span> <span class="string">'123456'</span>, <span class="symbol">password_confirmation:</span> <span class="string">'123456'</span>)</span><br><span class="line">  assert user.save</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>为了让测试通过，在 <code>model</code> 中再加入一行代码。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ApplicationRecord</span></span><br><span class="line">  has_secure_password</span><br><span class="line">  validates <span class="symbol">:password</span>, <span class="symbol">length:</span> &#123; <span class="symbol">minimum:</span> <span class="number">6</span> &#125;</span><br><span class="line">  validates_confirmation_of <span class="symbol">:password</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>validates_confirmation_of :password</code> 将会检查密码的一致性。<code>Rails</code> 不强制使用 <code>password_confirmation</code>，但是你需要的话可以像这么来用。我确实很喜欢这个功能，因为它节省了很多代码和开发时间。而且对大部分应用来说够用了。<code>has_secure_password</code> 会自动加入以下验证规则：</p>
+<ul>
+<li>在创建时密码必须存在</li>
+<li>密码长度小于等于72字符</li>
+<li>确认密码，使用 password_confirmation 属性</li>
+</ul>
+<p>在实际项目中，通过第三方应用登录的用户是不需要密码的，这时可以通过传递 <code>validations: false</code> 参数移除验证规则。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">has_secure_password <span class="symbol">validations:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>模块验证规则查看</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.validators</span><br></pre></td></tr></table></figure>
+<p>模块中某属性验证规则查看</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.validators_on(<span class="symbol">:password</span>)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -253,12 +278,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2019/04/20/SpringCloud-服务注册/" title="SpringCloud 服务注册"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2018/08/29/Spring-Boot-中使用-Spring-Security-JWT-构建身份认证系统/" title="Spring Boot 中使用 Spring Security + JWT 构建身份认证系统"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2019/01/13/SpringBoot-自定义参数校验/" title="SpringBoot 自定义参数校验 "><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2017/12/05/MySQL-UNION-合并结果集/" title="MySQL UNION 合并结果集"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
