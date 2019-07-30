@@ -17,17 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>categories | JiangYongKang</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://blog.jiangyongkang.com/categories/index.html">
+  <title>Rails 服务端生成条形码和二维码 | JiangYongKang</title>
+  <meta name="description" content="通常情况下，图片的生成应当在客户端去实现。但是当我们必须在服务端去生成图片时 Barby Gem 是一个非常不错的选择。它是一个用来生成各种标准的条形码，以及二维码的库。Barby 的代码结构可以大致分为 生成器 和 输出。输出器的功能非常全面，可以输出 Base64、PNG、PDF 等等，甚至我们可以基于 Barby 添加自己的输出器。需要注意的一点是，如果你试图生成二维码，需要添加一个额外的库">
+<meta name="keywords" content="Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails 服务端生成条形码和二维码">
+<meta property="og:url" content="http://blog.jiangyongkang.com/2019/07/31/Rails-服务端生成条形码和二维码/index.html">
 <meta property="og:site_name" content="vincent">
+<meta property="og:description" content="通常情况下，图片的生成应当在客户端去实现。但是当我们必须在服务端去生成图片时 Barby Gem 是一个非常不错的选择。它是一个用来生成各种标准的条形码，以及二维码的库。Barby 的代码结构可以大致分为 生成器 和 输出。输出器的功能非常全面，可以输出 Base64、PNG、PDF 等等，甚至我们可以基于 Barby 添加自己的输出器。需要注意的一点是，如果你试图生成二维码，需要添加一个额外的库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-12T13:04:30.781Z">
+<meta property="og:updated_time" content="2019-07-30T15:14:24.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="Rails 服务端生成条形码和二维码">
+<meta name="twitter:description" content="通常情况下，图片的生成应当在客户端去实现。但是当我们必须在服务端去生成图片时 Barby Gem 是一个非常不错的选择。它是一个用来生成各种标准的条形码，以及二维码的库。Barby 的代码结构可以大致分为 生成器 和 输出。输出器的功能非常全面，可以输出 Base64、PNG、PDF 等等，甚至我们可以基于 Barby 添加自己的输出器。需要注意的一点是，如果你试图生成二维码，需要添加一个额外的库">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://blog.jiangyongkang.com/categories/index.html">
+  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/07/31/Rails-服务端生成条形码和二维码/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
   
@@ -179,14 +183,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Rails-服务端生成条形码和二维码" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      categories
+      Rails 服务端生成条形码和二维码
     </h1>
   
 
@@ -194,22 +198,37 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/categories/index.html" class="article-date">
-	  <time datetime="2019-04-12T21:04:30.000Z" itemprop="datePublished">2019-04-12</time>
+	<a href="/2019/07/31/Rails-服务端生成条形码和二维码/" class="article-date">
+	  <time datetime="2019-07-30T22:51:03.000Z" itemprop="datePublished">2019-07-30</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Ruby/">Ruby</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Rails/">Rails</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/categories/index.html#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/31/Rails-服务端生成条形码和二维码/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <p>通常情况下，图片的生成应当在客户端去实现。但是当我们必须在服务端去生成图片时 <a href="https://github.com/toretore/barby/" target="_blank" rel="noopener">Barby Gem</a> 是一个非常不错的选择。它是一个用来生成各种标准的条形码，以及二维码的库。<code>Barby</code> 的代码结构可以大致分为 <strong>生成器</strong> 和 <strong>输出</strong>。输出器的功能非常全面，可以输出 Base64、PNG、PDF 等等，甚至我们可以基于 <code>Barby</code> 添加自己的输出器。需要注意的一点是，如果你试图生成二维码，需要添加一个额外的库 <a href="https://github.com/whomwah/rqrcode/" target="_blank" rel="noopener">rqrcode Gem</a>。</p>
+<p>第一步将相关的依赖添加到 Gemfile 中<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="string">'barby'</span>, <span class="string">'~&gt; 0.6.8'</span></span><br><span class="line">gem <span class="string">'rqrcode'</span>, <span class="string">'~&gt; 0.10.1'</span> <span class="comment"># 如果不需要生成二维码，可以不添加</span></span><br></pre></td></tr></table></figure></p>
+<p>第二步，在 <code>config/application.rb</code> 中加载相关的依赖库<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'barby/barcode/qr_code'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'barby/barcode/code_39'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'barby/outputter/png_outputter'</span></span><br></pre></td></tr></table></figure></p>
+<p>第三部，创建 <code>app/controllers/concerns/barby_generator.rb</code> 编写用于生成条形码和二维码图片的通用方法<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">BarbyGenerator</span></span></span><br><span class="line">  extend ActiveSupport::Concern</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">make_qr_code</span><span class="params">(content)</span></span></span><br><span class="line">    data = Barby::QrCode.new(content)</span><br><span class="line">    base64_output = Base64.encode64 data.to_png(&#123; <span class="symbol">margin:</span> <span class="number">2</span>, <span class="symbol">xdim:</span> <span class="number">26</span>, <span class="symbol">ydim:</span> <span class="number">26</span> &#125;)</span><br><span class="line">    <span class="string">"data:image/png;base64,<span class="subst">#&#123;base64_output&#125;</span>"</span>.gsub(<span class="regexp">/\n/</span>, <span class="string">''</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">make_barcode</span><span class="params">(content)</span></span></span><br><span class="line">    data = Barby::Code39.new(content)</span><br><span class="line">    base64_output = Base64.encode64 data.to_png(&#123; <span class="symbol">margin:</span> <span class="number">2</span>, <span class="symbol">xdim:</span> <span class="number">3</span>, <span class="symbol">ydim:</span> <span class="number">3</span> &#125;)</span><br><span class="line">    <span class="string">"data:image/png;base64,<span class="subst">#&#123;base64_output&#125;</span>"</span>.gsub(<span class="regexp">/\n/</span>, <span class="string">''</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>最后就是控制图片尺寸大小的问题了，<code>Barby</code> 可以自定义生成图片的一些属性，具体的用法 <a href="https://github.com/toretore/barby/wiki/Outputters#definitions-and-common-options" target="_blank" rel="noopener">官方 WiKi</a> 中有详细的描述。可以按照自身的需求去设置。</p>
+
       
     </div>
     <div class="article-footer">
@@ -231,6 +250,16 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/07/20/Rails-下载文件/" title="Rails 下载文件"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -339,6 +368,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
 
 
+
+
+
+   
 
 
 
