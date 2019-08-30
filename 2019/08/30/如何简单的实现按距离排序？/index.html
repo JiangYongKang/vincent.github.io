@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>SpringCloud 服务发现 | JiangYongKang</title>
-  <meta name="description" content="添加依赖1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt; 添加 @EnableE">
-<meta name="keywords" content="SpringCloud">
+  <title>如何简单的实现按距离排序？ | JiangYongKang</title>
+  <meta name="description" content="现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。 先将用来演示的表结构和数据初始化一下123456789101112131415-- 创建商户表CREATE TABLE merchant (	id int AUTO_INCREMENT COMMENT &apos;主键&apos;,	merchant_nam">
+<meta name="keywords" content="MySQL,坐标排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud 服务发现">
-<meta property="og:url" content="http://blog.jiangyongkang.com/2019/04/21/SpringCloud-服务发现/index.html">
+<meta property="og:title" content="如何简单的实现按距离排序？">
+<meta property="og:url" content="http://blog.jiangyongkang.com/2019/08/30/如何简单的实现按距离排序？/index.html">
 <meta property="og:site_name" content="vincent">
-<meta property="og:description" content="添加依赖1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt; 添加 @EnableE">
+<meta property="og:description" content="现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。 先将用来演示的表结构和数据初始化一下123456789101112131415-- 创建商户表CREATE TABLE merchant (	id int AUTO_INCREMENT COMMENT &apos;主键&apos;,	merchant_nam">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-20T09:01:22.272Z">
+<meta property="og:updated_time" content="2019-08-30T02:38:21.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringCloud 服务发现">
-<meta name="twitter:description" content="添加依赖1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&amp;lt;/dependency&amp;gt; 添加 @EnableE">
+<meta name="twitter:title" content="如何简单的实现按距离排序？">
+<meta name="twitter:description" content="现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。 先将用来演示的表结构和数据初始化一下123456789101112131415-- 创建商户表CREATE TABLE merchant (	id int AUTO_INCREMENT COMMENT &apos;主键&apos;,	merchant_nam">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/04/21/SpringCloud-服务发现/index.html">
+  <link rel="canonical" href="http://blog.jiangyongkang.com/2019/08/30/如何简单的实现按距离排序？/index.html">
   
     <link rel="alternate" href="/atom.xml" title="vincent" type="application/atom+xml">
   
@@ -183,14 +183,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-SpringCloud-服务发现" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-如何简单的实现按距离排序？" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      SpringCloud 服务发现
+      如何简单的实现按距离排序？
     </h1>
   
 
@@ -198,38 +198,90 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/04/21/SpringCloud-服务发现/" class="article-date">
-	  <time datetime="2019-04-20T16:49:10.000Z" itemprop="datePublished">2019-04-20</time>
+	<a href="/2019/08/30/如何简单的实现按距离排序？/" class="article-date">
+	  <time datetime="2019-08-29T21:03:05.000Z" itemprop="datePublished">2019-08-29</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/SpringCloud系列/">SpringCloud系列</a>
+    <a class="article-category-link" href="/categories/服务端开发/">服务端开发</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/SpringCloud/">SpringCloud</a>
+	<a class="article-tag-link" href="/tags/MySQL/">MySQL</a>, <a class="article-tag-link" href="/tags/坐标排序/">坐标排序</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/04/21/SpringCloud-服务发现/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/30/如何简单的实现按距离排序？/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>添加依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>添加 <code>@EnableEurekaClient</code> 注解，开启服务发现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringCloudServiceOneApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringCloudServiceOneApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>开启服务注册配置，并设置注册中心的地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server.port=10001</span><br><span class="line">spring.application.name=spring-cloud-service-one-example</span><br><span class="line"></span><br><span class="line">eureka.client.fetch-registry=true</span><br><span class="line">eureka.client.register-with-eureka=true</span><br><span class="line">eureka.client.service-url.defaultZone=http://localhost:8080/eureka</span><br></pre></td></tr></table></figure></p>
-<p>依次打包并启动 <code>spring-cloud-eureka-example</code> <code>spring-cloud-service-one-example</code> 项目，查看输出的日志:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2019-04-20 16:58:46.270  INFO 55738 --- [nio-8080-exec-2] c.n.e.registry.AbstractInstanceRegistry  : Registered instance SPRING-CLOUD-SERVICE-ONE-EXAMPLE/localhost:spring-cloud-service-one-example:10001 with status UP (replication=false)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2019-04-20 16:58:46.272  INFO 55809 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SPRING-CLOUD-SERVICE-ONE-EXAMPLE/localhost:spring-cloud-service-one-example:10001 - registration status: 204</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Disable delta property : false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application is null : false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Application version is -1: false</span><br><span class="line">2019-04-20 16:59:16.137  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server</span><br><span class="line">2019-04-20 16:59:16.161  INFO 55809 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200</span><br></pre></td></tr></table></figure>
-<p>通过以上日志能够查看出服务注册发现是正常运行的，访问 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 查看注册服务的状态。</p>
-<p>代码案例：<a href="https://github.com/JiangYongKang/spring-cloud-examples" target="_blank" rel="noopener">https://github.com/JiangYongKang/spring-cloud-examples</a></p>
+        <p>现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。</p>
+<p>先将用来演示的表结构和数据初始化一下<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建商户表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> merchant (</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'主键'</span>,</span><br><span class="line">	merchant_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商户名称'</span>,</span><br><span class="line">	merchant_address <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商户地址'</span>,</span><br><span class="line">	longitude <span class="keyword">double</span>(<span class="number">15</span>, <span class="number">12</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0.0</span> <span class="keyword">COMMENT</span> <span class="string">'经度'</span>,</span><br><span class="line">	latitude <span class="keyword">double</span>(<span class="number">15</span>, <span class="number">12</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0.0</span> <span class="keyword">COMMENT</span> <span class="string">'纬度'</span>,</span><br><span class="line">	<span class="keyword">CONSTRAINT</span> merchant_pk PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</span><br><span class="line">) <span class="keyword">COMMENT</span> <span class="string">'商户表'</span>;</span><br><span class="line"><span class="comment">-- 插入一些测试数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'海底捞火锅'</span>, <span class="string">'浦建路118号巴黎春天百货F5'</span>, <span class="number">121.52088</span>, <span class="number">31.20852</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'河马鲜生'</span>, <span class="string">'长宁路88号KiNG88广场B1层'</span>, <span class="number">121.42741</span>, <span class="number">31.22761</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">'望湘园'</span>, <span class="string">'川沙路5398号百联川沙购物中心F3层'</span>, <span class="number">121.69961</span>, <span class="number">31.18577</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">'小杨生煎'</span>, <span class="string">'川沙路4825号浦东商场B1层'</span>, <span class="number">121.69775</span>, <span class="number">31.19509</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="string">'肯德基'</span>, <span class="string">'张江路625号1层B座'</span>, <span class="number">121.61561</span>, <span class="number">31.20514</span>);</span><br></pre></td></tr></table></figure></p>
+<p>然后套用 <a href="https://en.wikipedia.org/wiki/Haversine_formula" target="_blank" rel="noopener">Haversine公式</a> 直接用 MySQL 的函数去计算距离再排序。例如：假设我当前位置是 <strong>[31.202635, 121.654555]</strong> 查询周边的商家，并且按距离排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *, <span class="keyword">ACOS</span>(</span><br><span class="line">            <span class="keyword">COS</span>(<span class="keyword">RADIANS</span>(<span class="number">31.202635</span>)) *</span><br><span class="line">            <span class="keyword">COS</span>(<span class="keyword">RADIANS</span>(latitude)) *</span><br><span class="line">            <span class="keyword">COS</span>(<span class="keyword">RADIANS</span>(longitude) - <span class="keyword">RADIANS</span>(<span class="number">121.654555</span>)) +</span><br><span class="line">            <span class="keyword">SIN</span>(<span class="keyword">RADIANS</span>(<span class="number">31.202635</span>)) *</span><br><span class="line">            <span class="keyword">SIN</span>(<span class="keyword">RADIANS</span>(latitude))</span><br><span class="line">          ) * <span class="number">6378</span> <span class="keyword">AS</span> distance</span><br><span class="line"><span class="keyword">FROM</span> merchant</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> distance</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<p>其中 6378 是地球赤道的半径，如果想调整精度，比如精确到米，可以设置为 6378000，下面是排序的结果</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">id</th>
+<th style="text-align:left">merchant_name</th>
+<th style="text-align:left">merchant_address</th>
+<th style="text-align:left">longitude</th>
+<th style="text-align:left">latitude</th>
+<th style="text-align:left">distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">肯德基</td>
+<td style="text-align:left">张江路625号1层B座</td>
+<td style="text-align:left">121.61561</td>
+<td style="text-align:left">31.20514</td>
+<td style="text-align:left">3.7185308288925247</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">小杨生煎</td>
+<td style="text-align:left">川沙路4825号浦东商场B1层</td>
+<td style="text-align:left">121.69775</td>
+<td style="text-align:left">31.19509</td>
+<td style="text-align:left">4.197812806482076</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">望湘园</td>
+<td style="text-align:left">川沙路5398号百联川沙购物中心F3层</td>
+<td style="text-align:left">121.69961</td>
+<td style="text-align:left">31.18577</td>
+<td style="text-align:left">4.683026249493325</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">海底捞火锅</td>
+<td style="text-align:left">浦建路118号巴黎春天百货F5</td>
+<td style="text-align:left">121.52088</td>
+<td style="text-align:left">31.20852</td>
+<td style="text-align:left">12.744185472645878</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">河马鲜生</td>
+<td style="text-align:left">长宁路88号KiNG88广场B1层</td>
+<td style="text-align:left">121.42741</td>
+<td style="text-align:left">31.22761</td>
+<td style="text-align:left">21.802509499536363</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -255,13 +307,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/07/18/Rails-发送邮件/" title="Rails 发送邮件"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/04/20/SpringCloud-服务注册/" title="SpringCloud 服务注册"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/08/01/微信网页授权登录实践总结/" title="微信网页授权登录实践总结"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
