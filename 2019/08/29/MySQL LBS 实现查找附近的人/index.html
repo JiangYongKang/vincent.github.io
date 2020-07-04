@@ -20,25 +20,21 @@
     var CONFIG = {"hostname":"blog.jiangyongkang.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="在计算机科学中，垃圾回收（英语：Garbage Collection，缩写为 GC）是指一种自动的存储器管理机制。当某个程序占用的一部分内存空间不再被这个程序访问时，这个程序会借助垃圾回收算法向操作系统归还这部分内存空间。垃圾回收器可以减轻程序员的负担，也减少程序中的错误。垃圾回收最早起源于 LISP 语言。当前许多语言如 Smalltalk、Java、C# 和 D 语言都支持垃圾回收器。">
+  <meta name="description" content="现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。先将用来演示的表结构和数据初始化一下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 中的内存回收机制">
-<meta property="og:url" content="https://blog.jiangyongkang.com/2020/04/12/Java-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:title" content="MySQL LBS 实现查找附近的人">
+<meta property="og:url" content="https://blog.jiangyongkang.com/2019/08/29/MySQL%20LBS%20%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E9%99%84%E8%BF%91%E7%9A%84%E4%BA%BA/index.html">
 <meta property="og:site_name" content="姜咏康的博客">
-<meta property="og:description" content="在计算机科学中，垃圾回收（英语：Garbage Collection，缩写为 GC）是指一种自动的存储器管理机制。当某个程序占用的一部分内存空间不再被这个程序访问时，这个程序会借助垃圾回收算法向操作系统归还这部分内存空间。垃圾回收器可以减轻程序员的负担，也减少程序中的错误。垃圾回收最早起源于 LISP 语言。当前许多语言如 Smalltalk、Java、C# 和 D 语言都支持垃圾回收器。">
+<meta property="og:description" content="现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。先将用来演示的表结构和数据初始化一下">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://q8nnvv93v.bkt.clouddn.com/0a256e66f32cdc278f830a8380bc9f30.jpg">
-<meta property="og:image" content="http://q8nnvv93v.bkt.clouddn.com/4bbbef1b5c02009b69f5bb12e2288645.jpg">
-<meta property="og:image" content="http://q8nnvv93v.bkt.clouddn.com/45bce1c3019c675dd8a4c513443e9f43.jpg">
-<meta property="article:published_time" content="2020-04-12T03:49:36.000Z">
-<meta property="article:modified_time" content="2020-04-19T17:57:12.546Z">
+<meta property="article:published_time" content="2019-08-29T13:03:05.000Z">
+<meta property="article:modified_time" content="2020-07-04T02:38:34.828Z">
 <meta property="article:author" content="JiangYongKang">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="坐标排序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q8nnvv93v.bkt.clouddn.com/0a256e66f32cdc278f830a8380bc9f30.jpg">
 
-<link rel="canonical" href="https://blog.jiangyongkang.com/2020/04/12/Java-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
+<link rel="canonical" href="https://blog.jiangyongkang.com/2019/08/29/MySQL%20LBS%20%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E9%99%84%E8%BF%91%E7%9A%84%E4%BA%BA/">
 
 
 <script id="page-configurations">
@@ -51,7 +47,7 @@
   };
 </script>
 
-  <title>Java 中的内存回收机制 | 姜咏康的博客</title>
+  <title>MySQL LBS 实现查找附近的人 | 姜咏康的博客</title>
   
 
 
@@ -173,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.jiangyongkang.com/2020/04/12/Java-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="https://blog.jiangyongkang.com/2019/08/29/MySQL%20LBS%20%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E9%99%84%E8%BF%91%E7%9A%84%E4%BA%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://q8nnvv93v.bkt.clouddn.com/ff14b631c01640fd6a0b80da977234d6.jpeg">
@@ -186,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Java 中的内存回收机制
+          MySQL LBS 实现查找附近的人
         </h1>
 
         <div class="post-meta">
@@ -196,14 +192,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-12 11:49:36" itemprop="dateCreated datePublished" datetime="2020-04-12T11:49:36+08:00">2020-04-12</time>
+              <time title="创建时间：2019-08-29 21:03:05" itemprop="dateCreated datePublished" datetime="2019-08-29T21:03:05+08:00">2019-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-20 01:57:12" itemprop="dateModified" datetime="2020-04-20T01:57:12+08:00">2020-04-20</time>
+                <time title="修改时间：2020-07-04 10:38:34" itemprop="dateModified" datetime="2020-07-04T10:38:34+08:00">2020-07-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,42 +222,67 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在计算机科学中，<strong>垃圾回收</strong>（英语：Garbage Collection，缩写为 GC）是指一种自动的存储器管理机制。当某个程序占用的一部分内存空间不再被这个程序访问时，这个程序会借助垃圾回收算法向操作系统归还这部分内存空间。垃圾回收器可以减轻程序员的负担，也减少程序中的错误。垃圾回收最早起源于 LISP 语言。当前许多语言如 Smalltalk、Java、C# 和 D 语言都支持垃圾回收器。</p>
+        <p>现在应用中类似 “优先按距离排序” 的功能已经很常见了，那么这些功能如何简单快速的去实现呢？本文将提供一个在数据量不是特别大的时候的解决方案，实现起来比较简单。先将用来演示的表结构和数据初始化一下</p>
 <a id="more"></a>
 
-<h3 id="0x00-垃圾回收是什么"><a href="#0x00-垃圾回收是什么" class="headerlink" title="0x00 垃圾回收是什么"></a>0x00 垃圾回收是什么</h3><p>众所周知，Java 是一个不需要自己进行内存管理的语言。与 C++ 不同，JVM 会在空闲时间自动去释放无效对象所占用的内存空间。Java 中的对象都存放于堆中，如果堆中的对象没有及时的进行回收则会导致堆内存越来越大，直至堆内存被占满。而垃圾回收正是保证了有效的内存使用，释放无效对象的内存。这一些都无需程序员自己处理，JVM 已经帮我们做到了这一切。</p>
-<h3 id="0x01-如何判定对象无效"><a href="#0x01-如何判定对象无效" class="headerlink" title="0x01 如何判定对象无效"></a>0x01 如何判定对象无效</h3><p>垃圾回收指的是回收掉无效的对象，那么什么是无效的对象呢？无效对象通常指的是不再存活的对象，更直白的讲是指不会再被其他地方使用的对象。这一类对象既然不会再被使用，JVM 就会释放掉它所占用的内存空间。那么，JVM 是如何判定对象无效呢？</p>
-<blockquote>
-<p>引用计数法</p>
-</blockquote>
-<p>引用计数法是一种简单高效的内存管理方式。这种方式会为每一个对象分配一个引用计数器，用来统计该对象被引用的次数，当这个计数器归零时也就意味着这个对象不再被任何地方引用。这种方式实现起来比较简单，它的弊端在于如果两个对象循环引用，它俩的计数器都不会归零，所以就永远不会被回收。目前主流的虚拟机并没有采用这种做法。</p>
-<blockquote>
-<p>可达性分析</p>
-</blockquote>
-<p>可达性分析是目前主流 JVM 对于内存管理的实现方式。其基本思想是从 <code>GC Roots</code> 开始向下遍历搜索引用对象，当所有的对象都搜索完毕，剩余的那些没有被搜索到的节点被认为是 <strong>不可达</strong> 的对象。 <code>GC Roots</code> 对象主要由下面四种类型组成：</p>
-<ul>
-<li>调用栈中引用的对象（本地变量表）</li>
-<li>方法区中静态引用的对象</li>
-<li>方法区中常量引用的对象</li>
-<li>本地方法栈中的对象</li>
-</ul>
-<h3 id="0x02-如何回收无效对象"><a href="#0x02-如何回收无效对象" class="headerlink" title="0x02 如何回收无效对象"></a>0x02 如何回收无效对象</h3><p>JVM 的垃圾收集使用的是 <strong>分代收集算法</strong>。简单来讲就是根据对象的存活时间长短，将内存空间分为 <code>新生代</code> <code>老年代</code> <code>元空间</code>。不同声明周期的对象所需要使用到的回收算法不一样，如： <code>复制算法</code> <code>标记-整理</code> <code>标记-清除</code></p>
-<blockquote>
-<p>复制算法</p>
-</blockquote>
-<p>复制算法是一种简单粗暴的回收方式。它将内存划分为两大区域，只会在一块内存中分配的新对象。当需要进行内存回收时，直接将存活的对象复制到另一块内存中去，然后清除当前内存。这种做法的好处是不容易产生内存碎片，坏处是在一段时间内只能使用部分内存。总结来说，复制算法适合用于对象大量死亡的区域，因为这样只需要复制少部分存活对象到新的内存区域。JVM 中的新生代就非常符合这种场景，新生代会产生大量对象，但是每次 GC 后剩余的存活对象却并不多。<br><img src="http://q8nnvv93v.bkt.clouddn.com/0a256e66f32cdc278f830a8380bc9f30.jpg" alt="http://q8nnvv93v.bkt.clouddn.com/0a256e66f32cdc278f830a8380bc9f30.jpg"></p>
-<blockquote>
-<p>标记清除</p>
-</blockquote>
-<p>标记清除算法会从将存活的对象进行标记，然后对剩余的无效对象进行清除回收。标记清除算法不需要对存活对象进行移动，而且只对无效对象做处理，所以这种算法适合存活的对象比较多的情况。标记清除算法的弊端也很明显，因为只是回收了无效对象，所以内存碎片会比较多。</p>
-<div style='padding-left: 40px;'>
-  <img src='http://q8nnvv93v.bkt.clouddn.com/4bbbef1b5c02009b69f5bb12e2288645.jpg' />
-</div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建商户表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> merchant (</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'主键'</span>,</span><br><span class="line">	merchant_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商户名称'</span>,</span><br><span class="line">	merchant_address <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商户地址'</span>,</span><br><span class="line">	longitude <span class="keyword">double</span>(<span class="number">15</span>, <span class="number">12</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0.0</span> <span class="keyword">COMMENT</span> <span class="string">'经度'</span>,</span><br><span class="line">	latitude <span class="keyword">double</span>(<span class="number">15</span>, <span class="number">12</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0.0</span> <span class="keyword">COMMENT</span> <span class="string">'纬度'</span>,</span><br><span class="line">	<span class="keyword">CONSTRAINT</span> merchant_pk PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>)</span><br><span class="line">) <span class="keyword">COMMENT</span> <span class="string">'商户表'</span>;</span><br><span class="line"><span class="comment">-- 插入一些测试数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'海底捞火锅'</span>, <span class="string">'浦建路118号巴黎春天百货F5'</span>, <span class="number">121.52088</span>, <span class="number">31.20852</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'河马鲜生'</span>, <span class="string">'长宁路88号KiNG88广场B1层'</span>, <span class="number">121.42741</span>, <span class="number">31.22761</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">'望湘园'</span>, <span class="string">'川沙路5398号百联川沙购物中心F3层'</span>, <span class="number">121.69961</span>, <span class="number">31.18577</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">'小杨生煎'</span>, <span class="string">'川沙路4825号浦东商场B1层'</span>, <span class="number">121.69775</span>, <span class="number">31.19509</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> merchant <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="string">'肯德基'</span>, <span class="string">'张江路625号1层B座'</span>, <span class="number">121.61561</span>, <span class="number">31.20514</span>);</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>标记整理</p>
-</blockquote>
-<p>标记整理算法和标记清除在标记时采用的做法相同，不同点在于清除完无效对象后，会将所有存活对象向左端空闲内存进行移动并更新对象指针。毫无疑问，标记整理的成本更高，但是却解决了内存碎片的问题。<br><img src="http://q8nnvv93v.bkt.clouddn.com/45bce1c3019c675dd8a4c513443e9f43.jpg" alt="http://q8nnvv93v.bkt.clouddn.com/45bce1c3019c675dd8a4c513443e9f43.jpg"></p>
+<p>然后套用 <a href="https://en.wikipedia.org/wiki/Haversine_formula" target="_blank" rel="noopener">Haversine 公式</a> 直接用 MySQL 的函数去计算距离再排序。例如：假设我当前位置是 <strong>[31.202635, 121.654555]</strong> 查询周边的商家，并且按距离排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *, <span class="keyword">ACOS</span>(</span><br><span class="line">            <span class="keyword">COS</span>(<span class="keyword">RADIANS</span>(<span class="number">31.202635</span>)) *</span><br><span class="line">            <span class="keyword">COS</span>(<span class="keyword">RADIANS</span>(latitude)) *</span><br><span class="line">            <span class="keyword">COS</span>(<span class="keyword">RADIANS</span>(longitude) - <span class="keyword">RADIANS</span>(<span class="number">121.654555</span>)) +</span><br><span class="line">            <span class="keyword">SIN</span>(<span class="keyword">RADIANS</span>(<span class="number">31.202635</span>)) *</span><br><span class="line">            <span class="keyword">SIN</span>(<span class="keyword">RADIANS</span>(latitude))</span><br><span class="line">          ) * <span class="number">6378</span> <span class="keyword">AS</span> distance</span><br><span class="line"><span class="keyword">FROM</span> merchant</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> distance</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">0</span>, <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中 6378 是地球赤道的半径，如果想调整精度，比如精确到米，可以设置为 6378000，下面是排序的结果</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">merchant_name</th>
+<th align="left">merchant_address</th>
+<th align="left">longitude</th>
+<th align="left">latitude</th>
+<th align="left">distance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">5</td>
+<td align="left">肯德基</td>
+<td align="left">张江路 625 号 1 层 B 座</td>
+<td align="left">121.61561</td>
+<td align="left">31.20514</td>
+<td align="left">3.7185308288925247</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">小杨生煎</td>
+<td align="left">川沙路 4825 号浦东商场 B1 层</td>
+<td align="left">121.69775</td>
+<td align="left">31.19509</td>
+<td align="left">4.197812806482076</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">望湘园</td>
+<td align="left">川沙路 5398 号百联川沙购物中心 F3 层</td>
+<td align="left">121.69961</td>
+<td align="left">31.18577</td>
+<td align="left">4.683026249493325</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">海底捞火锅</td>
+<td align="left">浦建路 118 号巴黎春天百货 F5</td>
+<td align="left">121.52088</td>
+<td align="left">31.20852</td>
+<td align="left">12.744185472645878</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">河马鲜生</td>
+<td align="left">长宁路 88 号 KiNG88 广场 B1 层</td>
+<td align="left">121.42741</td>
+<td align="left">31.22761</td>
+<td align="left">21.802509499536363</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -271,8 +292,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JAVA/" rel="tag"># Java</a>
-              <a href="/tags/JVM/" rel="tag"># JVM</a>
+              <a href="/tags/MYSQL/" rel="tag"># MySQL</a>
+              <a href="/tags/%E5%9D%90%E6%A0%87%E6%8E%92%E5%BA%8F/" rel="tag"># 坐标排序</a>
           </div>
 
         
@@ -281,12 +302,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/25/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0-MySQL-%E4%BA%8C-%EF%BC%9AMySQL-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="prev" title="深入学习 MySQL (二)：MySQL 文件系统">
-      <i class="fa fa-chevron-left"></i> 深入学习 MySQL (二)：MySQL 文件系统
+    <a href="/2019/08/01/%E5%BE%AE%E4%BF%A1%E7%BD%91%E9%A1%B5%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" rel="prev" title="微信网页授权登录实践总结">
+      <i class="fa fa-chevron-left"></i> 微信网页授权登录实践总结
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/04/14/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE/" rel="next" title="类加载机制与双亲委派">
-      类加载机制与双亲委派 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/11/13/Ruby-%E4%B8%AD%E7%9A%84%E5%B8%B8%E9%87%8F%E6%9F%A5%E6%89%BE/" rel="next" title="Ruby 中的常量查找">
+      Ruby 中的常量查找 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -347,7 +368,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-垃圾回收是什么"><span class="nav-number">1.</span> <span class="nav-text">0x00 垃圾回收是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-如何判定对象无效"><span class="nav-number">2.</span> <span class="nav-text">0x01 如何判定对象无效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-如何回收无效对象"><span class="nav-number">3.</span> <span class="nav-text">0x02 如何回收无效对象</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -474,7 +494,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'JiangYongKang.github.io',
       owner       : 'JiangYongKang',
       admin       : ['JiangYongKang'],
-      id          : '6ee2f688444946df74fd93d759c0d76f',
+      id          : '3acd383f54af3b3374c46ea05f96064e',
         language: 'zh-CN',
       distractionFreeMode: true
     });
