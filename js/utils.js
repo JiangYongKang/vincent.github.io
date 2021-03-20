@@ -219,14 +219,15 @@ NexT.utils = {
   },
 
   registerLangSelect: function() {
-    let sel = document.querySelector('.lang-select');
-    if (!sel) return;
-    sel.value = CONFIG.page.lang;
-    sel.addEventListener('change', () => {
-      let target = sel.options[sel.selectedIndex];
-      document.querySelector('.lang-select-label span').innerText = target.text;
-      let url = target.dataset.href;
-      window.pjax ? window.pjax.loadUrl(url) : window.location.href = url;
+    let selects = document.querySelectorAll('.lang-select');
+    selects.forEach(sel => {
+      sel.value = CONFIG.page.lang;
+      sel.addEventListener('change', () => {
+        let target = sel.options[sel.selectedIndex];
+        document.querySelectorAll('.lang-select-label span').forEach(span => span.innerText = target.text);
+        let url = target.dataset.href;
+        window.pjax ? window.pjax.loadUrl(url) : window.location.href = url;
+      });
     });
   },
 
@@ -234,10 +235,10 @@ NexT.utils = {
     const navItems = document.querySelectorAll('.post-toc li');
     const sections = [...navItems].map(element => {
       var link = element.querySelector('a.nav-link');
+      var target = document.getElementById(decodeURI(link.getAttribute('href')).replace('#', ''));
       // TOC item animation navigate.
       link.addEventListener('click', event => {
         event.preventDefault();
-        var target = document.getElementById(event.currentTarget.getAttribute('href').replace('#', ''));
         var offset = target.getBoundingClientRect().top + window.scrollY;
         window.anime({
           targets  : document.scrollingElement,
@@ -246,7 +247,7 @@ NexT.utils = {
           scrollTop: offset + 10
         });
       });
-      return document.getElementById(link.getAttribute('href').replace('#', ''));
+      return target;
     });
 
     var tocElement = document.querySelector('.post-toc-wrap');
